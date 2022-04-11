@@ -3,15 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Astreus's documentation!
-======================================
+Documentation for Astreus
+=========================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
-Here is where you can write the documentation for your package.
+Astreus is a general-purpose tool that saves/loads data from/to your exoplanet data reduction pipeline.  By using consistent formats and keywords across pipelines, users should be able to exchange and compare results easier than ever before!
 
 
 Usage
