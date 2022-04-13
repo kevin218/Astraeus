@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'my_package'
-copyright = '2022, Author Name'
-author = 'Author Name'
+project = 'Astreus'
+copyright = '2022, Kevin B. Stevenson'
+author = 'Kevin B. Stevenson'
 
 
 # -- General configuration ---------------------------------------------------

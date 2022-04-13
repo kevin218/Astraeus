@@ -21,7 +21,7 @@ Usage
 Installation
 ------------
 
-To use `Astreus` you need to install X, Y and Z.
+To use `Astreus` you need to install TBD...
 
 
 .. _code:
@@ -29,20 +29,17 @@ To use `Astreus` you need to install X, Y and Z.
 Code
 ----
 
-Here is an example of describing the use of your function.
+To save outputs directly to an HDFs file, you can use the ``astreus.hdf5IO.writeH5()`` function:
 
-To add one to a number you can use the ``astreus.add_one()`` function:
+.. py:function:: astreus.hdf5IO.writeH5(filename, verbose=True, **kwargs)
 
-.. py:function:: astreus.add_one(number)
-
-
-    :param number: Should be integer, floating point number or a string.
-
-    If ``number`` is not one of these types, an exception will be raised:
+    :filename: File name to save data, with our without extension
+    :verbose: Set True to enable print statements declaring success/failure, and optional error message
+    :**kwargs: Parameters to save
 
     .. py:exception:: TypeError
 
-   Raised if the input is invalid.
+   Raised if write is unsuccessful.
 
 More about how to describe code can be hound
 `here <https://www.sphinx-doc.org/en/master/tutorial/describing-code.html>`_
