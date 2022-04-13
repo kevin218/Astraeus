@@ -200,17 +200,19 @@ def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
     return da
 
 
-def makeDataset():
+def makeDataset(dictionary):
     """
-    Make Xarray Dataset using list of DataArrays.
+    Make Xarray Dataset using dictionary of DataArrays.
 
     Parameters
     ----------
-    filename: str
-        ...
+    dictionary: dict
+        Dictionary of DataArrays (e.g., dict(flux=flux_da,t=temp_da,w=wave_da))
 
     Returns
     -------
     ds: object
         Xarray Dataset
     """
+    ds = xr.Dataset(dictionary)
+    return ds

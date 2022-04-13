@@ -54,7 +54,7 @@ def test_readH5():
 
 def test_makeDA():
     """
-    Test making Xarray DataArrays.
+    Test making Xarray DataArrays and Datasets.
     """
     # Create 3D DataArray of flux-like values (time, y, x)
     flux = np.random.rand(10, 5, 20)
@@ -84,3 +84,9 @@ def test_makeDA():
     assert np.array_equal(wave_da.values, w)
     assert wave_da.name == name
     assert wave_da.attrs['units'] == w_units
+    # Create Xarray Dataset from multiple DataArrays
+    dictionary = dict(flux=flux_da,t=temp_da,w=wave_da)
+    ds = xrio.makeDataset(dictionary)
+    assert np.array_equal(ds.flux.values, flux_da.values)
+    assert np.array_equal(ds.t.values, temp_da.values)
+    assert np.array_equal(ds.w.values, wave_da.values)
