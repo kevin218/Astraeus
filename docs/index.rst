@@ -60,4 +60,4 @@ Indices and tables
  The following will add the signature of the individual functions and pull
  their docstrings.
 
-.. automodapi:: astreus.example
+.. automodapi:: astreus.hdf5IO
