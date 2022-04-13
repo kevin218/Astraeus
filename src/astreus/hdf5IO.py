@@ -2,6 +2,9 @@ import h5py
 
 # Empty Data object
 class Data():
+    """
+    Data object containing parameters loaded from HDF5 file.
+    """
     def __init(self):
         return
 

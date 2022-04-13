@@ -2,16 +2,16 @@ import numpy as np
 import xarray as xr
 
 
-def writeXR(filename, ds, verbose=True):
+def writeXR(filename, ds, verbose=True, append=False):
     """
-    Save Xarray dataset to an HDF5 file.
+    Save Xarray Dataset to an HDF5 file.
 
     Parameters
     ----------
     filename: str
         File name to save data, with our without extension
     ds: object
-        Xarray dataset to be saved
+        Xarray Dataset to be saved
     verbose: boolean
         Set True to enable print statements declaring success/failure,
         and optional error message
@@ -28,7 +28,10 @@ def writeXR(filename, ds, verbose=True):
            (filename.endswith(".nc") == False):
             filename += ".h5"
 
-        ds.to_netcdf(filename, engine='h5netcdf')
+        if append:
+            ds.to_netcdf(filename, engine='h5netcdf', mode='a')
+        else:
+            ds.to_netcdf(filename, engine='h5netcdf')
 
         if verbose:
             print(f"Finished writing to {filename}")
@@ -43,7 +46,7 @@ def writeXR(filename, ds, verbose=True):
 
 def readXR(filename, verbose=True):
     """
-    Load Xarray dataset from an HDF5 file.
+    Load Xarray Dataset from an HDF5 file.
 
     Parameters
     ----------
@@ -53,7 +56,7 @@ def readXR(filename, verbose=True):
     Returns
     -------
     ds: object
-        Xarray dataset containing saved information.
+        Xarray Dataset containing saved information.
     success: boolean
         Return True is file was loaded successfully
     """
@@ -76,3 +79,66 @@ def readXR(filename, verbose=True):
         success = False
         ds = None
     return ds, success
+
+
+def makeFluxLikeDA(flux, time, flux_unit, time_unit, name=None, y=None, x=None):
+    """
+    Make Xarray DataArray with flux-like dimensions (time, y, x).
+
+    Parameters
+    ----------
+    flux: array
+        3D array of flux or uncertainty values
+    time: array
+        1D array of time values
+    flux_unit: str
+        Flux units (e.g., 'electrons')
+    time_unit: str
+        Time units (e.g., 'BJD_TDB')
+    name: str
+        Name of flux-like array (e.g., 'flux_unc')
+    y: array
+        (Optional) 1D array of pixel positions, default is 0..flux.shape[1]
+    x: array
+        (Optional) 1D array of pixel positions, default is 0..flux.shape[2]
+
+    Returns
+    -------
+    da: object
+        Xarray DataArray
+    """
+    if y == None:
+        y = np.arange(flux.shape[1])
+    if x == None:
+        x = np.arange(flux.shape[2])
+    da = xr.DataArray(
+        flux,
+        name=name,
+        coords={
+            "time": time,
+            "y": y,
+            "x": x,
+            },
+        dims=["time", "y", "x", ],
+        attrs={
+            "flux_unit": flux_unit,
+            "time_unit": time_unit,
+            },
+        )
+    return da
+
+
+def makeDataset():
+    """
+    Make Xarray Dataset using list of DataArrays.
+
+    Parameters
+    ----------
+    filename: str
+        ...
+
+    Returns
+    -------
+    ds: object
+        Xarray Dataset
+    """
