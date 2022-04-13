@@ -61,3 +61,4 @@ Indices and tables
  their docstrings.
 
 .. automodapi:: astreus.hdf5IO
+.. automodapi:: astreus.xarrayIO

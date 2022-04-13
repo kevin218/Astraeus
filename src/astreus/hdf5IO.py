@@ -46,7 +46,7 @@ def writeH5(filename, verbose=True, **kwargs):
 
 def readH5(filename, verbose=True, data=None, keys=None):
     """
-    Save parameters from an HDF5 file to an object.
+    Load parameters from an HDF5 file to an object.
 
     Parameters
     ----------
