@@ -81,7 +81,7 @@ def readXR(filename, verbose=True):
     return ds, success
 
 
-def makeFluxLikeDA(flux, time, flux_unit, time_unit, name=None, y=None, x=None):
+def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None):
     """
     Make Xarray DataArray with flux-like dimensions (time, y, x).
 
@@ -91,9 +91,9 @@ def makeFluxLikeDA(flux, time, flux_unit, time_unit, name=None, y=None, x=None):
         3D array of flux or uncertainty values
     time: array
         1D array of time values
-    flux_unit: str
+    flux_units: str
         Flux units (e.g., 'electrons')
-    time_unit: str
+    time_units: str
         Time units (e.g., 'BJD_TDB')
     name: str
         Name of flux-like array (e.g., 'flux_unc')
@@ -121,8 +121,80 @@ def makeFluxLikeDA(flux, time, flux_unit, time_unit, name=None, y=None, x=None):
             },
         dims=["time", "y", "x", ],
         attrs={
-            "flux_unit": flux_unit,
-            "time_unit": time_unit,
+            "flux_units": flux_units,
+            "time_units": time_units,
+            },
+        )
+    return da
+
+def makeTimeLikeDA(t, time, units, time_units, name=None):
+    """
+    Make Xarray DataArray with time-like dimensions.
+
+    Parameters
+    ----------
+    t: array
+        1D array of time-dependent values
+    time: array
+        1D array of time values
+    units: str
+        units of t (e.g., 'K')
+    time_units: str
+        Time units (e.g., 'BJD_TDB')
+    name: str
+        Name of time-like array (e.g., 'detector_temperature')
+
+    Returns
+    -------
+    da: object
+        Xarray DataArray
+    """
+    da = xr.DataArray(
+        t,
+        name=name,
+        coords={
+            "time": time,
+            },
+        dims=["time"],
+        attrs={
+            "units": units,
+            "time_units": time_units,
+            },
+        )
+    return da
+
+def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
+    """
+    Make Xarray DataArray with wavelength-like dimensions.
+
+    Parameters
+    ----------
+    w: array
+        1D array of wavelength-dependent values
+    wavelength: array
+        1D array of wavelength values
+    units: str
+        units of w (e.g., '%')
+    wave_units: str
+        Wavelength units (e.g., 'microns')
+    name: str
+        Name of wavelength-like array (e.g., 'Transit Depth')
+
+    Returns
+    -------
+    da: object
+        Xarray DataArray
+    """
+    da = xr.DataArray(
+        w,
+        name=name,
+        coords={
+            "wavelength": wavelength,
+            },
+        dims=["wavelength"],
+        attrs={
+            "units": units,
+            "wave_units": wave_units,
             },
         )
     return da

@@ -56,12 +56,31 @@ def test_makeDA():
     """
     Test making Xarray DataArrays.
     """
+    # Create 3D DataArray of flux-like values (time, y, x)
     flux = np.random.rand(10, 5, 20)
     time = np.arange(10)
-    flux_unit = 'e-'
-    time_unit = 'MJD'
+    flux_units = 'e-'
+    time_units = 'MJD'
     name = 'flux'
-    flux_da = xrio.makeFluxLikeDA(flux, time, flux_unit, time_unit, name=name)
+    flux_da = xrio.makeFluxLikeDA(flux, time, flux_units, time_units, name=name)
     assert np.array_equal(flux_da.values, flux)
     assert flux_da.name == name
-    assert flux_da.attrs['time_unit'] == time_unit
+    assert flux_da.attrs['time_units'] == time_units
+    # Create 1D DataArray of time-dependent values
+    t = np.random.rand(10)
+    t_units = 'K'
+    name = 'Detector_Temperature'
+    temp_da = xrio.makeTimeLikeDA(t, time, t_units, time_units, name=name)
+    assert np.array_equal(temp_da.values, t)
+    assert temp_da.name == name
+    assert temp_da.attrs['units'] == t_units
+    # Create 1D DataArray of wavelength-dependent values
+    w = 1+np.random.rand(20)
+    w_units = '%'
+    name = 'Transit Depth'
+    wavelength = np.linspace(1,5,20)
+    wave_units = 'microns'
+    wave_da = xrio.makeWaveLikeDA(w, wavelength, w_units, wave_units, name=name)
+    assert np.array_equal(wave_da.values, w)
+    assert wave_da.name == name
+    assert wave_da.attrs['units'] == w_units
