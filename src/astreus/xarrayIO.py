@@ -15,6 +15,9 @@ def writeXR(filename, ds, verbose=True, append=False):
     verbose: boolean
         Set True to enable print statements declaring success/failure,
         and optional error message
+    append: boolean
+        Set True to add parameters to existing dataset.
+        Concatenation of existing parameters is not supported.
 
     Returns
     -------
@@ -22,7 +25,7 @@ def writeXR(filename, ds, verbose=True, append=False):
         Return True is file was saved successfully
     """
     try:
-        # Add .hdf5 if missing
+        # Add .h5 if missing
         if (filename.endswith(".hdf5") == False) and \
            (filename.endswith(".h5") == False) and \
            (filename.endswith(".nc") == False):
@@ -57,28 +60,22 @@ def readXR(filename, verbose=True):
     -------
     ds: object
         Xarray Dataset containing saved information.
-    success: boolean
-        Return True is file was loaded successfully
     """
     try:
-        # Add .hdf5 if missing
+        # Add .h5 if missing
         if (filename.endswith(".hdf5") == False) and \
            (filename.endswith(".h5") == False) and \
            (filename.endswith(".nc") == False):
             filename += ".h5"
-
         ds = xr.open_dataset(filename, engine='h5netcdf')
-
         if verbose:
             print(f"Finished loading parameters from {filename}")
-        success = True
     except Exception as e:
         if verbose:
             print(f"Failed to load parameters from {filename}")
             print(e)
-        success = False
         ds = None
-    return ds, success
+    return ds
 
 
 def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None):
@@ -200,7 +197,7 @@ def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
     return da
 
 
-def makeDataset(dictionary):
+def makeDataset(dictionary=None):
     """
     Make Xarray Dataset using dictionary of DataArrays.
 
@@ -216,3 +213,45 @@ def makeDataset(dictionary):
     """
     ds = xr.Dataset(dictionary)
     return ds
+
+def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='override'):
+    """
+    Concatenate list of Xarray Datasets along given dimension.  See xarray.concat() for details.
+
+    Parameters
+    ----------
+    datasets: list
+        List of Xarray Dataset objects
+    dim: str
+        Name of the dimension to concatenate along
+    data_vars: str
+        {"minimal", "different", "all"}
+    coords: str
+        {"minimal", "different", "all"}
+    compat: str
+        {"identical", "equals", "broadcast_equals", "no_conflicts", "override"}
+
+    Returns
+    -------
+    ds: object
+        Xarray Dataset with concatenated parameters
+    """
+    ds = xr.concat(datasets, dim=dim, data_vars=data_vars, coords=coords, compat=compat)
+    return ds
+
+# def addToDataset(dictionary=None):
+#     """
+#     Make Xarray Dataset using dictionary of DataArrays.
+#
+#     Parameters
+#     ----------
+#     dictionary: dict
+#         Dictionary of DataArrays (e.g., dict(flux=flux_da,t=temp_da,w=wave_da))
+#
+#     Returns
+#     -------
+#     ds: object
+#         Xarray Dataset
+#     """
+#     ds = xr.Dataset(dictionary)
+#     return ds
