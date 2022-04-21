@@ -47,8 +47,8 @@ def test_readH5():
         },
     )
     success = xrio.writeXR(filename, ds)
-    ds2, success = xrio.readXR(filename)
-    assert success == 1
+    ds2 = xrio.readXR(filename)
+    assert ds2 != None
     assert np.array_equal(ds.foo.values, ds2.foo.values)
     os.remove(filename)
 
