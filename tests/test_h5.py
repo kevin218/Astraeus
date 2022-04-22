@@ -1,6 +1,6 @@
 import pytest, os
 import numpy as np
-import astreus.hdf5IO as h5io
+import astraeus.hdf5IO as h5io
 
 def test_writeH5():
     """

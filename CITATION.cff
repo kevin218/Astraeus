@@ -12,10 +12,10 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Astreus
+title: Astraeus
 message: If you use this software, please cite as below.
 date-released: 2022-04-11
-url: 'https://github.com/kevin218/Astreus'
+url: 'https://github.com/kevin218/Astraeus'
 version: 0.0.1
 type: software
 authors:

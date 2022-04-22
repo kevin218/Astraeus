@@ -1,7 +1,7 @@
 import pytest, os
 import numpy as np
 import xarray as xr
-import astreus.xarrayIO as xrio
+import astraeus.xarrayIO as xrio
 
 def test_writeH5():
     """

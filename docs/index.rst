@@ -1,16 +1,16 @@
-.. Astreus documentation master file, created by
+.. Astraeus documentation master file, created by
    sphinx-quickstart on Tue Mar 22 13:13:41 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Documentation for Astreus
+Documentation for Astraeus
 =========================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-Astreus is a general-purpose tool that saves/loads data from/to your exoplanet data reduction pipeline.  By using consistent formats and keywords across pipelines, users should be able to exchange and compare results easier than ever before!
+Astraeus is a general-purpose tool that saves/loads data from/to your exoplanet data reduction pipeline.  By using consistent formats and keywords across pipelines, users should be able to exchange and compare results easier than ever before!
 
 
 Usage
@@ -21,7 +21,7 @@ Usage
 Installation
 ------------
 
-To use `Astreus` you need to install TBD...
+To use `Astraeus` you need to install TBD...
 
 
 .. _code:
@@ -29,9 +29,9 @@ To use `Astreus` you need to install TBD...
 Code
 ----
 
-To save outputs directly to an HDFs file, you can use the ``astreus.hdf5IO.writeH5()`` function:
+To save outputs directly to an HDFs file, you can use the ``astraeus.hdf5IO.writeH5()`` function:
 
-.. py:function:: astreus.hdf5IO.writeH5(filename, verbose=True, **kwargs)
+.. py:function:: astraeus.hdf5IO.writeH5(filename, verbose=True, **kwargs)
 
     :filename: File name to save data, with our without extension
     :verbose: Set True to enable print statements declaring success/failure, and optional error message
@@ -60,5 +60,5 @@ Indices and tables
  The following will add the signature of the individual functions and pull
  their docstrings.
 
-.. automodapi:: astreus.hdf5IO
-.. automodapi:: astreus.xarrayIO
+.. automodapi:: astraeus.hdf5IO
+.. automodapi:: astraeus.xarrayIO
