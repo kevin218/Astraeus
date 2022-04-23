@@ -196,6 +196,47 @@ def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
         )
     return da
 
+def makeLCDA(flux, wave, time, flux_units, wave_units, time_units, name=None):
+    """
+    Make Xarray DataArray with light curve (wavelength, time) dimensions.
+
+    Parameters
+    ----------
+    flux: ndarray
+        2D array of flux or uncertainty values
+    wave: ndarray
+        1D array of wavelength values
+    time: ndarray
+        1D array of time values
+    flux_units: str
+        Flux units (e.g., 'electrons')
+    wave_units: str
+        Wavelength units (e.g., 'microns')
+    time_units: str
+        Time units (e.g., 'BJD_TDB')
+    name: str
+        Name of flux-like array (e.g., 'flux_unc')
+
+    Returns
+    -------
+    da: object
+        Xarray DataArray
+    """
+    da = xr.DataArray(
+        flux,
+        name=name,
+        coords={
+            "wavelength": wave,
+            "time": time,
+            },
+        dims=["wavelength", "time", ],
+        attrs={
+            "flux_units": flux_units,
+            "wave_units": wave_units,
+            "time_units": time_units,
+            },
+        )
+    return da
 
 def makeDataset(dictionary=None):
     """
