@@ -122,6 +122,7 @@ def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None
             "time_units": time_units,
             },
         )
+    da["time"].attrs["time_units"] = time_units
     return da
 
 def makeTimeLikeDA(t, time, units, time_units, name=None):
@@ -158,6 +159,7 @@ def makeTimeLikeDA(t, time, units, time_units, name=None):
             "time_units": time_units,
             },
         )
+    da["time"].attrs["time_units"] = time_units
     return da
 
 def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
@@ -194,16 +196,17 @@ def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
             "wave_units": wave_units,
             },
         )
+    da["wavelength"].attrs["wave_units"] = wave_units
     return da
 
-def makeLCDA(flux, wave, time, flux_units, wave_units, time_units, name=None):
+def makeLCDA(spec, wave, time, flux_units, wave_units, time_units, name=None):
     """
     Make Xarray DataArray with light curve (wavelength, time) dimensions.
 
     Parameters
     ----------
-    flux: ndarray
-        2D array of flux or uncertainty values
+    spec: ndarray
+        2D array of spectra or uncertainty values
     wave: ndarray
         1D array of wavelength values
     time: ndarray
@@ -215,7 +218,7 @@ def makeLCDA(flux, wave, time, flux_units, wave_units, time_units, name=None):
     time_units: str
         Time units (e.g., 'BJD_TDB')
     name: str
-        Name of flux-like array (e.g., 'flux_unc')
+        Name of spec-like array (e.g., 'spec_unc')
 
     Returns
     -------
@@ -223,7 +226,7 @@ def makeLCDA(flux, wave, time, flux_units, wave_units, time_units, name=None):
         Xarray DataArray
     """
     da = xr.DataArray(
-        flux,
+        spec,
         name=name,
         coords={
             "wavelength": wave,
@@ -236,6 +239,8 @@ def makeLCDA(flux, wave, time, flux_units, wave_units, time_units, name=None):
             "time_units": time_units,
             },
         )
+    da["wavelength"].attrs["wave_units"] = wave_units
+    da["time"].attrs["time_units"] = time_units
     return da
 
 def makeDataset(dictionary=None):
@@ -279,20 +284,3 @@ def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='
     """
     ds = xr.concat(datasets, dim=dim, data_vars=data_vars, coords=coords, compat=compat)
     return ds
-
-# def addToDataset(dictionary=None):
-#     """
-#     Make Xarray Dataset using dictionary of DataArrays.
-#
-#     Parameters
-#     ----------
-#     dictionary: dict
-#         Dictionary of DataArrays (e.g., dict(flux=flux_da,t=temp_da,w=wave_da))
-#
-#     Returns
-#     -------
-#     ds: object
-#         Xarray Dataset
-#     """
-#     ds = xr.Dataset(dictionary)
-#     return ds

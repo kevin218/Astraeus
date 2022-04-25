@@ -30,6 +30,8 @@ def test_writeH5():
     assert success == 1
     success = xrio.writeXR(filename, ds2, append=True)
     assert success == 1
+    success = xrio.writeXR(filename, None)
+    assert success == 0
     os.remove(filename)
 
 def test_readH5():
@@ -50,6 +52,8 @@ def test_readH5():
     ds2 = xrio.readXR(filename)
     assert ds2 != None
     assert np.array_equal(ds.foo.values, ds2.foo.values)
+    ds2  = xrio.readXR("bar.h5")
+    assert ds2  == None
     os.remove(filename)
 
 def test_makeDA():
@@ -69,7 +73,7 @@ def test_makeDA():
     # Create 1D DataArray of time-dependent values
     t = np.random.rand(10)
     t_units = 'K'
-    name = 'Detector_Temperature'
+    name = 'detector_temperature'
     temp_da = xrio.makeTimeLikeDA(t, time, t_units, time_units, name=name)
     assert np.array_equal(temp_da.values, t)
     assert temp_da.name == name
@@ -77,16 +81,28 @@ def test_makeDA():
     # Create 1D DataArray of wavelength-dependent values
     w = 1+np.random.rand(20)
     w_units = '%'
-    name = 'Transit Depth'
+    name = 'transit_depth'
     wavelength = np.linspace(1,5,20)
     wave_units = 'microns'
     wave_da = xrio.makeWaveLikeDA(w, wavelength, w_units, wave_units, name=name)
     assert np.array_equal(wave_da.values, w)
     assert wave_da.name == name
     assert wave_da.attrs['units'] == w_units
+    #Create 2D DataArray of wavelength- and time-dependent values
+    name = 'light_curves'
+    spec = np.sum(flux, axis=1).T
+    lc_da = xrio.makeLCDA(spec, wavelength, time, flux_units, wave_units, time_units, name=name)
+    assert np.array_equal(lc_da.values, spec)
+    assert lc_da.name == name
+    assert lc_da.wavelength.attrs['wave_units'] == wave_units
     # Create Xarray Dataset from multiple DataArrays
     dictionary = dict(flux=flux_da,t=temp_da,w=wave_da)
-    ds = xrio.makeDataset(dictionary)
-    assert np.array_equal(ds.flux.values, flux_da.values)
-    assert np.array_equal(ds.t.values, temp_da.values)
-    assert np.array_equal(ds.w.values, wave_da.values)
+    ds1 = xrio.makeDataset(dictionary)
+    assert np.array_equal(ds1.flux.values, flux_da.values)
+    assert np.array_equal(ds1.t.values, temp_da.values)
+    assert np.array_equal(ds1.w.values, wave_da.values)
+    # Concatenate Xarray Datasets along time axis
+    ds2 = xrio.makeDataset(dictionary)
+    datasets = [ds1, ds2]
+    ds = xrio.concat(datasets, dim='time')
+    assert np.array_equal(ds.flux.values, np.concatenate((ds1.flux.values,ds2.flux.values)))
