@@ -136,7 +136,7 @@ def makeTimeLikeDA(t, time, units, time_units, name=None):
     time: array
         1D array of time values
     units: str
-        units of t (e.g., 'K')
+        Units of t (e.g., 'K')
     time_units: str
         Time units (e.g., 'BJD_TDB')
     name: str
@@ -173,7 +173,7 @@ def makeWaveLikeDA(w, wavelength, units, wave_units, name=None):
     wavelength: array
         1D array of wavelength values
     units: str
-        units of w (e.g., '%')
+        Units of w (e.g., '%')
     wave_units: str
         Wavelength units (e.g., 'microns')
     name: str
@@ -262,7 +262,7 @@ def makeDataset(dictionary=None):
 
 def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='override'):
     """
-    Concatenate list of Xarray Datasets along given dimension.  See xarray.concat() for details.
+    Concatenate list of Xarray Datasets along given dimension (default is time).  See xarray.concat() for details.
 
     Parameters
     ----------
@@ -271,11 +271,11 @@ def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='
     dim: str
         Name of the dimension to concatenate along
     data_vars: str
-        {"minimal", "different", "all"}
+        Options: "minimal", "different", "all"
     coords: str
-        {"minimal", "different", "all"}
+        Options: "minimal", "different", "all"
     compat: str
-        {"identical", "equals", "broadcast_equals", "no_conflicts", "override"}
+        Options: "identical", "equals", "broadcast_equals", "no_conflicts", "override"
 
     Returns
     -------

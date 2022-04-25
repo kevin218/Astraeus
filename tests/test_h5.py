@@ -23,14 +23,12 @@ def test_readH5():
     time = np.arange(5)
     filename = "foo.hdf5"
     success = h5io.writeH5(filename, flux=flux, time=time)
-    data, success = h5io.readH5(filename)
-    assert success == 1
+    data = h5io.readH5(filename)
     assert np.array_equal(data.time, time)
-    data, success = h5io.readH5(filename, keys=['flux'])
-    assert success == 1
+    data = h5io.readH5(filename, keys=['flux'])
     assert np.array_equal(data.flux, flux)
-    data, success = h5io.readH5(filename, verbose=False)
-    assert success == 1
-    data, success = h5io.readH5("bar.hdf5", verbose=False)
-    assert success == 0
+    data = h5io.readH5(filename, verbose=False)
+    assert success != None
+    data = h5io.readH5("bar.hdf5", verbose=False)
+    assert success == None
     os.remove(filename)

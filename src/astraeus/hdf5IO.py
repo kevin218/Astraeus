@@ -3,14 +3,14 @@ import h5py
 # Empty Data object
 class Data():
     """
-    Data object containing parameters loaded from HDF5 file.
+    Returned object containing parameters loaded from a generic HDF5 file.
     """
     def __init(self):
         return
 
 def writeH5(filename, verbose=True, **kwargs):
     """
-    Save keyword arguments to an HDF5 file.
+    Save keyword arguments to a generic HDF5 file.
 
     Parameters
     ----------
@@ -49,7 +49,7 @@ def writeH5(filename, verbose=True, **kwargs):
 
 def readH5(filename, verbose=True, data=None, keys=None):
     """
-    Load parameters from an HDF5 file to an object.
+    Load parameters from a generic HDF5 file to an object.
 
     Parameters
     ----------
@@ -69,8 +69,6 @@ def readH5(filename, verbose=True, data=None, keys=None):
     -------
     data: object
         Data object instance that parameters are added to.
-    success: boolean
-        Return True is file was loaded successfully
     """
     try:
         # Add .hdf5, if missing
@@ -88,10 +86,9 @@ def readH5(filename, verbose=True, data=None, keys=None):
                 exec('data.'+key+' = f["'+key+'"][()]')
         if verbose:
             print(f"Finished loading parameters from {filename}")
-        success = True
     except Exception as e:
         if verbose:
             print(f"Failed to load parameters from {filename}")
             print(e)
-        success = False
-    return data, success
+        data = None
+    return data
