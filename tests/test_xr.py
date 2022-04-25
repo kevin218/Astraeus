@@ -3,6 +3,10 @@ import numpy as np
 import xarray as xr
 import astraeus.xarrayIO as xrio
 
+"""
+pytest --cov=.
+"""
+
 def test_writeH5():
     """
     Test writing Xarray dataset.

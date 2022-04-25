@@ -2,6 +2,10 @@ import pytest, os
 import numpy as np
 import astraeus.hdf5IO as h5io
 
+"""
+pytest --cov=.
+"""
+
 def test_writeH5():
     """
     Test writing HDF5 file.
