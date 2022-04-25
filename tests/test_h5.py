@@ -28,7 +28,7 @@ def test_readH5():
     data = h5io.readH5(filename, keys=['flux'])
     assert np.array_equal(data.flux, flux)
     data = h5io.readH5(filename, verbose=False)
-    assert success != None
+    assert data != None
     data = h5io.readH5("bar.hdf5", verbose=False)
-    assert success == None
+    assert data == None
     os.remove(filename)

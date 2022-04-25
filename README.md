@@ -8,7 +8,7 @@ A tool for standardizing I/O when reducing and analyzing exoplanet data
 
 ## Installation & Documentation
 
-Once written, up-to-date installation instructions and documentation can be found at
+Up-to-date installation instructions and documentation can be found at
 [https://kevin218.github.io/Astraeus/](https://kevin218.github.io/Astraeus/).
 
 ## Quickstart
