@@ -1,5 +1,6 @@
 import numpy as np
 import xarray as xr
+from .dataset import Dataset
 
 
 def writeXR(filename, ds, verbose=True, append=False):
@@ -67,7 +68,7 @@ def readXR(filename, verbose=True):
            (filename.endswith(".h5") == False) and \
            (filename.endswith(".nc") == False):
             filename += ".h5"
-        ds = xr.open_dataset(filename, engine='h5netcdf')
+        ds = Dataset(xr.open_dataset(filename, engine='h5netcdf'))
         if verbose:
             print(f"Finished loading parameters from {filename}")
     except Exception as e:
@@ -257,7 +258,7 @@ def makeDataset(dictionary=None):
     ds: object
         Xarray Dataset
     """
-    ds = xr.Dataset(dictionary)
+    ds = Dataset(dictionary)
     return ds
 
 def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='override'):
