@@ -1,6 +1,6 @@
 import numpy as np
 import xarray as xr
-from .dataset import Dataset
+# from .dataset import Dataset
 
 
 def writeXR(filename, ds, verbose=True, append=False):
@@ -33,9 +33,10 @@ def writeXR(filename, ds, verbose=True, append=False):
             filename += ".h5"
 
         if append:
-            ds.to_netcdf(filename, engine='h5netcdf', mode='a')
+            ds.to_netcdf(filename, engine='h5netcdf', invalid_netcdf=True,
+                         mode='a')
         else:
-            ds.to_netcdf(filename, engine='h5netcdf')
+            ds.to_netcdf(filename, engine='h5netcdf', invalid_netcdf=True)
 
         if verbose:
             print(f"Finished writing to {filename}")
@@ -68,7 +69,8 @@ def readXR(filename, verbose=True):
            (filename.endswith(".h5") == False) and \
            (filename.endswith(".nc") == False):
             filename += ".h5"
-        ds = Dataset(xr.open_dataset(filename, engine='h5netcdf'))
+        # ds = Dataset(xr.open_dataset(filename, engine='h5netcdf'))
+        ds = xr.open_dataset(filename, engine='h5netcdf')
         if verbose:
             print(f"Finished loading parameters from {filename}")
     except Exception as e:
@@ -258,12 +260,14 @@ def makeDataset(dictionary=None):
     ds: object
         Xarray Dataset
     """
-    ds = Dataset(dictionary)
+    # ds = Dataset(xr.Dataset(dictionary))
+    ds = xr.Dataset(dictionary)
     return ds
 
 def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='override'):
     """
-    Concatenate list of Xarray Datasets along given dimension (default is time).  See xarray.concat() for details.
+    Concatenate list of Xarray Datasets along given dimension (default is time).
+    See xarray.concat() for details.
 
     Parameters
     ----------
@@ -283,5 +287,6 @@ def concat(datasets, dim='time', data_vars='minimal', coords='minimal', compat='
     ds: object
         Xarray Dataset with concatenated parameters
     """
-    ds = xr.concat(datasets, dim=dim, data_vars=data_vars, coords=coords, compat=compat)
+    ds = xr.concat(datasets, dim=dim, data_vars=data_vars,
+                   coords=coords, compat=compat)
     return ds

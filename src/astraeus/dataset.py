@@ -7,7 +7,9 @@ class Dataset(xr.Dataset):
     __slots__ = ("_dataset",)
 
     def __setattr__(self, name: str, value: Any) -> None:
-        """Overwrite the setattr function to allow behaviour like Dataset.name = value instead of the usual Dataset['name'] = (coords, value).
+        """Overwrite the setattr function to allow behaviour like
+           Dataset.name = value instead of the usual
+           Dataset['name'] = (coords, value).
         """
         try:
             object.__setattr__(self, name, value)

@@ -31,11 +31,11 @@ def test_writeH5():
         },
     )
     success = xrio.writeXR(filename, ds)
-    assert success == 1
+    assert success
     success = xrio.writeXR(filename, ds2, append=True)
-    assert success == 1
+    assert success
     success = xrio.writeXR(filename, None)
-    assert success == 0
+    assert success is False
     os.remove(filename)
 
 def test_readH5():
@@ -52,10 +52,12 @@ def test_readH5():
             "z": ("x", list("abcd")),
         },
     )
+    ds.attrs['somevalue'] = 0.5
     success = xrio.writeXR(filename, ds)
     ds2 = xrio.readXR(filename)
     assert ds2 != None
     assert np.array_equal(ds.foo.values, ds2.foo.values)
+    assert ds.attrs['somevalue'] == ds2.attrs['somevalue']
     ds2  = xrio.readXR("bar.h5")
     assert ds2  == None
     os.remove(filename)
@@ -110,3 +112,5 @@ def test_makeDA():
     datasets = [ds1, ds2]
     ds = xrio.concat(datasets, dim='time')
     assert np.array_equal(ds.flux.values, np.concatenate((ds1.flux.values,ds2.flux.values)))
+    # Test writing to dataset using __setattrs__
+    # ds1.t = ds2.t.data

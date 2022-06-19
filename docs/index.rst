@@ -39,8 +39,8 @@ If you plan on contributing to the package, you should instead clone it via GitH
 The ``-e`` flag makes the install editable, which means that you do not have to install the package again and again after each change.  Changes to your files inside the project folder will automatically reflect in changes on your installed package.  However, if you are working in an interactive environment (e.g., ipython, Jupyter) you will need to re-import any modules that have changed.
 
 
-Usage
-=====
+Example Usage
+=============
 
 `Astraeus` has several templates for creating Xarray DataArrays: `flux-like`, `time-like`, `wavelength-like`, and `light curve` (which makes use of both time and wavelength).
 
@@ -53,7 +53,8 @@ Creating an `flux-like` DataArray requires a 3D array (time, y, x) of flux-like 
     flux_units = 'e-'
     time_units = 'MJD'
     name = 'flux'
-    flux_da = xrio.makeFluxLikeDA(flux, time, flux_units, time_units, name=name)
+    flux_da = xrio.makeFluxLikeDA(flux, time, flux_units, time_units,
+                                  name=name)
 
 The `time-like` and `wavelength-like` DataArrays are quite similar, and are helpful for recording time- and wavelength-dependent variables::
 
@@ -63,7 +64,8 @@ The `time-like` and `wavelength-like` DataArrays are quite similar, and are help
     units = 'K'
     time_units = 'MJD'
     name = 'detector_temperature'
-    temp_da = xrio.makeTimeLikeDA(temperature, time, units, time_units, name=name)
+    temp_da = xrio.makeTimeLikeDA(temperature, time, units,
+                                  time_units, name=name)
 
     # Create 1D DataArray of wavelength-dependent values
     depth = 1+np.random.rand(20)
@@ -71,7 +73,8 @@ The `time-like` and `wavelength-like` DataArrays are quite similar, and are help
     units = '%'
     wave_units = 'microns'
     name = 'transit_depth'
-    depth_da = xrio.makeWaveLikeDA(depth, wavelength, units, wave_units, name=name)
+    depth_da = xrio.makeWaveLikeDA(depth, wavelength, units,
+                                   wave_units, name=name)
 
 A `light curve` DataArray is used to store, for example, a time series of 1D spectra and requires a 2D array (wavelength, time) of flux-like values, a time array, and (of course) units::
 
@@ -83,7 +86,8 @@ A `light curve` DataArray is used to store, for example, a time series of 1D spe
     wave_units = 'microns'
     time_units = 'MJD'
     name = 'light_curves'
-    lc_da = xrio.makeLCDA(spec, wavelength, time, flux_units, wave_units, time_units, name=name)
+    lc_da = xrio.makeLCDA(spec, wavelength, time, flux_units,
+                          wave_units, time_units, name=name)
 
 Maintaining all of these DataArrays can be cumbersome, so it is often helpful to combine DataArrays with similar coordinates (i.e., axes) into an Xarray Dataset::
 
