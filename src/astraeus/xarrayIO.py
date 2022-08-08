@@ -107,9 +107,9 @@ def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None
     da: object
         Xarray DataArray
     """
-    if y == None:
+    if y is None:
         y = np.arange(flux.shape[1])
-    if x == None:
+    if x is None:
         x = np.arange(flux.shape[2])
     da = xr.DataArray(
         flux,
