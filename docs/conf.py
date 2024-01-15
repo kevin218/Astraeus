@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Astreus'
+project = 'Astraeus'
 copyright = '2022, Kevin B. Stevenson'
 author = 'Kevin B. Stevenson'
 
