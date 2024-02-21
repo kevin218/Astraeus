@@ -1,0 +1,6 @@
+readXR
+======
+
+.. currentmodule:: astreus.xarrayIO
+
+.. autofunction:: readXR

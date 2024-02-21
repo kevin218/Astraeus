@@ -1,0 +1,6 @@
+makeTimeLikeDA
+==============
+
+.. currentmodule:: astreus.xarrayIO
+
+.. autofunction:: makeTimeLikeDA

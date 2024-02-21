@@ -1,0 +1,6 @@
+add_one
+=======
+
+.. currentmodule:: astreus.example
+
+.. autofunction:: add_one

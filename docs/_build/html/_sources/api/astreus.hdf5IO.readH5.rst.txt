@@ -1,0 +1,6 @@
+readH5
+======
+
+.. currentmodule:: astreus.hdf5IO
+
+.. autofunction:: readH5

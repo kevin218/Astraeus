@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/Astraeus.egg-info/PKG-INFO
+src/Astraeus.egg-info/SOURCES.txt
+src/Astraeus.egg-info/dependency_links.txt
+src/Astraeus.egg-info/requires.txt
+src/Astraeus.egg-info/top_level.txt
+src/astraeus/__init__.py
+src/astraeus/hdf5IO.py
+src/astraeus/xarrayIO.py

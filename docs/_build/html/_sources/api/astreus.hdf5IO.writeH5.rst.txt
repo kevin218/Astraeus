@@ -1,0 +1,6 @@
+writeH5
+=======
+
+.. currentmodule:: astreus.hdf5IO
+
+.. autofunction:: writeH5

@@ -1,0 +1,6 @@
+makeDataset
+===========
+
+.. currentmodule:: astreus.xarrayIO
+
+.. autofunction:: makeDataset

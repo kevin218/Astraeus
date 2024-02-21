@@ -1,0 +1,6 @@
+makeFluxLikeDA
+==============
+
+.. currentmodule:: astreus.xarrayIO
+
+.. autofunction:: makeFluxLikeDA

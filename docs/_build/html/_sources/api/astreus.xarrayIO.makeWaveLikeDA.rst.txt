@@ -1,0 +1,6 @@
+makeWaveLikeDA
+==============
+
+.. currentmodule:: astreus.xarrayIO
+
+.. autofunction:: makeWaveLikeDA
