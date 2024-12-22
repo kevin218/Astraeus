@@ -81,26 +81,29 @@ def readXR(filename, verbose=True):
     return ds
 
 
-def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None):
+def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, 
+                   y=None, x=None, order=None):
     """
     Make Xarray DataArray with flux-like dimensions (time, y, x).
 
     Parameters
     ----------
-    flux: array
+    flux : array
         3D array of flux or uncertainty values
-    time: array
+    time : array
         1D array of time values
-    flux_units: str
+    flux_units : str
         Flux units (e.g., 'electrons')
-    time_units: str
+    time_units : str
         Time units (e.g., 'BJD_TDB')
-    name: str
+    name : str
         Name of flux-like array (e.g., 'flux_unc')
-    y: array
-        (Optional) 1D array of pixel positions, default is 0..flux.shape[1]
-    x: array
-        (Optional) 1D array of pixel positions, default is 0..flux.shape[2]
+    y : array; optional
+        1D array of pixel positions, default is 0..flux.shape[1]
+    x : array; optional
+        1D array of pixel positions, default is 0..flux.shape[2]
+    order : int, list, or array; optional
+        Spectroscopic order, default is None
 
     Returns
     -------
@@ -111,22 +114,44 @@ def makeFluxLikeDA(flux, time, flux_units, time_units, name=None, y=None, x=None
         y = np.arange(flux.shape[1])
     if x is None:
         x = np.arange(flux.shape[2])
-    da = xr.DataArray(
-        flux,
-        name=name,
-        coords={
-            "time": time,
-            "y": y,
-            "x": x,
-            },
-        dims=["time", "y", "x", ],
-        attrs={
-            "flux_units": flux_units,
-            "time_units": time_units,
-            },
-        )
+    if flux.ndim == 3:
+        da = xr.DataArray(
+            flux,
+            name=name,
+            coords={
+                "time": time,
+                "y": y,
+                "x": x,
+                },
+            dims=["time", "y", "x", ],
+            attrs={
+                "flux_units": flux_units,
+                "time_units": time_units,
+                },
+            )
+    elif flux.ndim == 4:
+        if isinstance(order, (int, list)):
+            order = np.array(order)
+        da = xr.DataArray(
+            flux,
+            name=name,
+            coords={
+                "time": time,
+                "y": y,
+                "x": x,
+                "order": order,
+                },
+            dims=["time", "y", "x", "order", ],
+            attrs={
+                "flux_units": flux_units,
+                "time_units": time_units,
+                },
+            )
+    else:
+        print(f"Flux array must have either 3 or 4 dimensions, not {flux.ndim}.")
     da["time"].attrs["time_units"] = time_units
     return da
+
 
 def makeTimeLikeDA(t, time, units, time_units, name=None):
     """
