@@ -1,24 +1,26 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to No Errors Test Project’s documentation! &#8212; No Errors Test Project  documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Documentation for Astraeus &#8212; Astraeus  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="concat" href="api/astraeus.xarrayIO.concat.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
+
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  
 
   </head><body>
   
@@ -30,28 +32,198 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-no-errors-test-project-s-documentation">
-<h1>Welcome to No Errors Test Project’s documentation!<a class="headerlink" href="#welcome-to-no-errors-test-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <section id="documentation-for-astraeus">
+<h1>Documentation for Astraeus<a class="headerlink" href="#documentation-for-astraeus" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<p><cite>Astraeus</cite> is a general-purpose tool that manages your data using Xarray structures and reads/writes data from/to your exoplanet data reduction pipeline.  By using consistent formats and keywords across pipelines, users will be able to exchange and compare results easier than ever before!  <cite>Astraeus</cite> makes use of <cite>Xarray</cite>, an open source Python package that uses labelled multi-dimensional arrays (think of Pandas in N dimensions).</p>
+<p><cite>Xarray</cite> is commonly used for data analysis in geoscience and makes use of two core data structures, called a <cite>DataArray</cite> and a <cite>Dataset</cite>.  The former is like a NumPy array, except with coordinates, labels, and attributes.  The latter is simply a collection of DataArrays.  Both structures can easily be written to and loaded from HDF5 files.  This means, even if you are not using Python, you can still read an HDF5 file written by <cite>Astraeus</cite> and maintain the full useability of your data.</p>
+</section>
+<section id="indices-and-searching">
+<h1>Indices and Searching<a class="headerlink" href="#indices-and-searching" title="Link to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h1>
+<p>The fastest way to install <cite>Astraeus</cite> is to use <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kevin218</span><span class="o">/</span><span class="n">Astraeus</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
 </div>
+<p>If you plan on contributing to the package, you should instead clone it via GitHub:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">kevin218</span><span class="o">/</span><span class="n">Astraeus</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">Astraeus</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag makes the install editable, which means that you do not have to install the package again and again after each change.  Changes to your files inside the project folder will automatically reflect in changes on your installed package.  However, if you are working in an interactive environment (e.g., ipython, Jupyter) you will need to re-import any modules that have changed.</p>
+</section>
+<section id="example-usage">
+<h1>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h1>
+<p><cite>Astraeus</cite> has several templates for creating Xarray DataArrays: <cite>flux-like</cite>, <cite>time-like</cite>, <cite>wavelength-like</cite>, and <cite>light curve</cite> (which makes use of both time and wavelength).</p>
+<p>Creating an <cite>flux-like</cite> DataArray requires a 3D array (time, y, x) of flux-like values, a time array, and (of course) units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 3D DataArray of flux-like values (time, y, x)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astraeus.xarrayIO</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xrio</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">flux_units</span> <span class="o">=</span> <span class="s1">&#39;e-&#39;</span>
+<span class="n">time_units</span> <span class="o">=</span> <span class="s1">&#39;MJD&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;flux&#39;</span>
+<span class="n">flux_da</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeFluxLikeDA</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">flux_units</span><span class="p">,</span> <span class="n">time_units</span><span class="p">,</span>
+                              <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>time-like</cite> and <cite>wavelength-like</cite> DataArrays are quite similar, and are helpful for recording time- and wavelength-dependent variables:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create 1D DataArray of time-dependent values</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;K&#39;</span>
+<span class="n">time_units</span> <span class="o">=</span> <span class="s1">&#39;MJD&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;detector_temperature&#39;</span>
+<span class="n">temp_da</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeTimeLikeDA</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span>
+                              <span class="n">time_units</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># Create 1D DataArray of wavelength-dependent values</span>
+<span class="n">depth</span> <span class="o">=</span> <span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">wavelength</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">units</span> <span class="o">=</span> <span class="s1">&#39;%&#39;</span>
+<span class="n">wave_units</span> <span class="o">=</span> <span class="s1">&#39;microns&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;transit_depth&#39;</span>
+<span class="n">depth_da</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeWaveLikeDA</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span>
+                               <span class="n">wave_units</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A <cite>light curve</cite> DataArray is used to store, for example, a time series of 1D spectra and requires a 2D array (wavelength, time) of flux-like values, a time array, and (of course) units:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#Create 2D DataArray of wavelength- and time-dependent values</span>
+<span class="n">spec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">wavelength</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">flux_units</span> <span class="o">=</span> <span class="s1">&#39;e-&#39;</span>
+<span class="n">wave_units</span> <span class="o">=</span> <span class="s1">&#39;microns&#39;</span>
+<span class="n">time_units</span> <span class="o">=</span> <span class="s1">&#39;MJD&#39;</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;light_curves&#39;</span>
+<span class="n">lc_da</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeLCDA</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">wavelength</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">flux_units</span><span class="p">,</span>
+                      <span class="n">wave_units</span><span class="p">,</span> <span class="n">time_units</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Maintaining all of these DataArrays can be cumbersome, so it is often helpful to combine DataArrays with similar coordinates (i.e., axes) into an Xarray Dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create Xarray Dataset from multiple DataArrays</span>
+<span class="n">dictionary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="n">flux_da</span><span class="p">,</span><span class="n">temp</span><span class="o">=</span><span class="n">temp_da</span><span class="p">,</span><span class="n">depth</span><span class="o">=</span><span class="n">depth_da</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeDataset</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>People often analyze segments (or files) from a larger dataset before combining the results.  If need be, one can concatenate multiple Datasets along a given axis (often time):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Concatenate two Xarray Datasets along time axis</span>
+<span class="n">dictionary</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="n">flux_da</span><span class="p">,</span><span class="n">temp</span><span class="o">=</span><span class="n">temp_da</span><span class="p">,</span><span class="n">depth</span><span class="o">=</span><span class="n">depth_da</span><span class="p">)</span>
+<span class="n">ds1</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeDataset</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+<span class="n">ds2</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">makeDataset</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+<span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">ds1</span><span class="p">,</span> <span class="n">ds2</span><span class="p">]</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, writing and reading Xarray Datasets and DataArrays is straightforward:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;foo.h5&quot;</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">writeXR</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ds</span><span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">xrio</span><span class="o">.</span><span class="n">readXR</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, to read and write generic parameters directly to an HDF5 file, use the functions within  <code class="docutils literal notranslate"><span class="pre">astraeus.hdf5IO</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">astraeus.hdf5IO</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">h5io</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;foo.hdf5&quot;</span>
+<span class="n">success</span> <span class="o">=</span> <span class="n">h5io</span><span class="o">.</span><span class="n">writeH5</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">flux</span><span class="o">=</span><span class="n">flux</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">h5io</span><span class="o">.</span><span class="n">readH5</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Results are returned in a <cite>data</cite> object and can be accessed using <code class="docutils literal notranslate"><span class="pre">data.flux</span></code> and <code class="docutils literal notranslate"><span class="pre">data.time</span></code>.</p>
+</section>
+<section id="code">
+<h1>Code<a class="headerlink" href="#code" title="Link to this heading">¶</a></h1>
+<section id="module-astraeus.xarrayIO">
+<span id="astraeus-xarrayio-module"></span><h2>astraeus.xarrayIO Module<a class="headerlink" href="#module-astraeus.xarrayIO" title="Link to this heading">¶</a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.concat.html#astraeus.xarrayIO.concat" title="astraeus.xarrayIO.concat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concat</span></code></a>(datasets[, dim, data_vars, coords, ...])</p></td>
+<td><p>Concatenate list of Xarray Datasets along given dimension (default is time).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.makeDataset.html#astraeus.xarrayIO.makeDataset" title="astraeus.xarrayIO.makeDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makeDataset</span></code></a>([dictionary])</p></td>
+<td><p>Make Xarray Dataset using dictionary of DataArrays.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.makeFluxLikeDA.html#astraeus.xarrayIO.makeFluxLikeDA" title="astraeus.xarrayIO.makeFluxLikeDA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makeFluxLikeDA</span></code></a>(flux, time, flux_units, ...)</p></td>
+<td><p>Make Xarray DataArray with flux-like dimensions (time, y, x).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.makeLCDA.html#astraeus.xarrayIO.makeLCDA" title="astraeus.xarrayIO.makeLCDA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makeLCDA</span></code></a>(spec, wave, time, flux_units, ...)</p></td>
+<td><p>Make Xarray DataArray with light curve (wavelength, time) dimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.makeTimeLikeDA.html#astraeus.xarrayIO.makeTimeLikeDA" title="astraeus.xarrayIO.makeTimeLikeDA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makeTimeLikeDA</span></code></a>(t, time, units, time_units[, ...])</p></td>
+<td><p>Make Xarray DataArray with time-like dimensions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.makeWaveLikeDA.html#astraeus.xarrayIO.makeWaveLikeDA" title="astraeus.xarrayIO.makeWaveLikeDA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">makeWaveLikeDA</span></code></a>(w, wavelength, units, wave_units)</p></td>
+<td><p>Make Xarray DataArray with wavelength-like dimensions.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.readXR.html#astraeus.xarrayIO.readXR" title="astraeus.xarrayIO.readXR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readXR</span></code></a>(filename[, verbose])</p></td>
+<td><p>Load Xarray Dataset from an HDF5 file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/astraeus.xarrayIO.writeXR.html#astraeus.xarrayIO.writeXR" title="astraeus.xarrayIO.writeXR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeXR</span></code></a>(filename, ds[, verbose, append])</p></td>
+<td><p>Save Xarray Dataset to an HDF5 file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="module-astraeus.hdf5IO">
+<span id="astraeus-hdf5io-module"></span><h2>astraeus.hdf5IO Module<a class="headerlink" href="#module-astraeus.hdf5IO" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Functions<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.hdf5IO.readH5.html#astraeus.hdf5IO.readH5" title="astraeus.hdf5IO.readH5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">readH5</span></code></a>(filename[, verbose, data, keys])</p></td>
+<td><p>Load parameters from a generic HDF5 file to an object.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api/astraeus.hdf5IO.writeH5.html#astraeus.hdf5IO.writeH5" title="astraeus.hdf5IO.writeH5"><code class="xref py py-obj docutils literal notranslate"><span class="pre">writeH5</span></code></a>(filename[, verbose])</p></td>
+<td><p>Save keyword arguments to a generic HDF5 file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api/astraeus.hdf5IO.Data.html#astraeus.hdf5IO.Data" title="astraeus.hdf5IO.Data"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Data</span></code></a>()</p></td>
+<td><p>Returned object containing parameters loaded from a generic HDF5 file.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="class-inheritance-diagram">
+<h3>Class Inheritance Diagram<a class="headerlink" href="#class-inheritance-diagram" title="Link to this heading">¶</a></h3>
+digraph inheritanceb15b042626 {
+bgcolor=transparent;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;Data&quot; [URL=&quot;api/astraeus.hdf5IO.Data.html#astraeus.hdf5IO.Data&quot;,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=10,height=0.25,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Returned object containing parameters loaded from a generic HDF5 file.&quot;];
+}
+</section>
+</section>
+</section>
 
 
           </div>
           
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">No Errors Test Project</a></h1>
+<h1 class="logo"><a href="#">Astraeus</a></h1>
 
 
 
@@ -61,24 +233,42 @@
 
 
 <h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.concat.html">concat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.makeDataset.html">makeDataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.makeFluxLikeDA.html">makeFluxLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.makeLCDA.html">makeLCDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.makeTimeLikeDA.html">makeTimeLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.makeWaveLikeDA.html">makeWaveLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.readXR.html">readXR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.xarrayIO.writeXR.html">writeXR</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.hdf5IO.readH5.html">readH5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.hdf5IO.writeH5.html">writeH5</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/astraeus.hdf5IO.Data.html">Data</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="api/astraeus.xarrayIO.concat.html" title="next chapter">concat</a></li>
   </ul></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
+<search id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -92,11 +282,11 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, sphinx-action Test Suite.
+      &#169;2022, Kevin B. Stevenson.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |
       <a href="_sources/index.rst.txt"
