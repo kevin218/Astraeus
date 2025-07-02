@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>readH5 &#8212; Astraeus  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=12dfc556" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="writeH5" href="astraeus.hdf5IO.writeH5.html" />
+    <link rel="prev" title="writeXR" href="astraeus.xarrayIO.writeXR.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="readh5">
+<h1>readH5<a class="headerlink" href="#readh5" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="astraeus.hdf5IO.readH5">
+<span class="sig-prename descclassname"><span class="pre">astraeus.hdf5IO.</span></span><span class="sig-name descname"><span class="pre">readH5</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#astraeus.hdf5IO.readH5" title="Link to this definition">¶</a></dt>
+<dd><p>Load parameters from a generic HDF5 file to an object.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>filename: str</dt><dd><p>File name to load data from, with our without extension</p>
+</dd>
+<dt>verbose: boolean</dt><dd><p>Set True to enable print statements declaring success/failure,
+and optional error message</p>
+</dd>
+<dt>data: object</dt><dd><p>Data object instance that parameters are added to.
+If None, then data object will be created.</p>
+</dd>
+<dt>keys: list</dt><dd><p>List of keyword parameters to read from file.
+If None, then all keywords will be read in.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>data: object</dt><dd><p>Data object instance that parameters are added to.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Astraeus</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.concat.html">concat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.makeDataset.html">makeDataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.makeFluxLikeDA.html">makeFluxLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.makeLCDA.html">makeLCDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.makeTimeLikeDA.html">makeTimeLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.makeWaveLikeDA.html">makeWaveLikeDA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.readXR.html">readXR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.xarrayIO.writeXR.html">writeXR</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">readH5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#astraeus.hdf5IO.readH5"><code class="docutils literal notranslate"><span class="pre">readH5()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.hdf5IO.writeH5.html">writeH5</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="astraeus.hdf5IO.Data.html">Data</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="astraeus.xarrayIO.writeXR.html" title="previous chapter">writeXR</a></li>
+      <li>Next: <a href="astraeus.hdf5IO.writeH5.html" title="next chapter">writeH5</a></li>
+  </ul></li>
+</ul>
+</div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2022, Kevin B. Stevenson.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.4.7</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="../_sources/api/astraeus.hdf5IO.readH5.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
