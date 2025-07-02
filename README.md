@@ -1,5 +1,5 @@
 # Astraeus
-A tool for standardizing I/O when reducing and analyzing exoplanet data
+A tool for standardizing I/O when reducing and analyzing exoplanet data.
 
 `Astraeus` is a general-purpose tool that manages your data using Xarray structures and reads/writes data from/to your exoplanet data reduction pipeline.  By using consistent formats and keywords across pipelines, users should be able to exchange and compare results easier than ever before!  `Astraeus` makes use of `Xarray`, an open source Python package that uses labelled multi-dimensional arrays (think of Pandas in N dimensions).
 
