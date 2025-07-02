@@ -28,7 +28,7 @@ Installation
 
 The fastest way to install `Astraeus` is to use ``pip``::
 
-    pip install git+https://github.com/kevin218/Astraeus.git
+    pip install astraeus-io
 
 If you plan on contributing to the package, you should instead clone it via GitHub::
 
